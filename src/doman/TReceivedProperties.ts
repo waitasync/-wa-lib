@@ -1,0 +1,22 @@
+import { TTheme } from "./TTheme";
+export type TReceivedProperties = {
+  theme: TTheme;
+  color?: string | number | [];
+  alignItems?: string | number | [];
+  background?: string | number | [];
+  backgroundColor?: string | number | [];
+  borderBottomStyle?: string | number | [];
+  borderBottomColor?: string | number | [];
+  borderBottomWidth?: string | number | [];
+  cursor?: string | number | [];
+  display?: string | number | [];
+  flexDirection?: string | number | [];
+  fontSize?: string | number | [];
+  letterSpacing?: string | number | [];
+  width?: string | number | [];
+  position?: string | number | [];
+  justifyContent?: string | number | [];
+  transition?: string | number | [];
+  textAlign?: string | number | [];
+  [x: string]: any;
+};

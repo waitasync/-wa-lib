@@ -9,6 +9,7 @@ const packageJson = require("./package.json");
 export default [
   {
     input: "src/index.ts",
+    external: ["react", "styled-components"],
     output: [
       {
         file: packageJson.main,
@@ -23,14 +24,16 @@ export default [
     ],
     plugins: [
       resolve(),
+      typescript({
+        tsconfig: "./tsconfig.json",
+      }),
       commonjs(),
-      typescript({ tsconfig: "./tsconfig.json" }),
       postcss(),
     ],
   },
   {
     input: "dist/esm/types/index.d.ts",
-    output: [{ file: "dist/index.d.ts", format: "esm" }],
+    output: [{ file: "dist/index.d.ts", format: "esm", sourcemap: true }],
     plugins: [dts()],
     external: [/\.(css|less|scss)$/],
   },
