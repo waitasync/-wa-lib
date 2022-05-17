@@ -1,3 +1,4 @@
+import Themes from "../../../theme";
 import { TTheme } from "../../../doman";
 
 export default (theme?: TTheme, value?: number | string | [], base?: []) => {
@@ -12,22 +13,25 @@ export default (theme?: TTheme, value?: number | string | [], base?: []) => {
     return result.map((m, i) => {
       if (typeof m == "number") {
         if (base) {
-          try {
-            const sizeList = base[i];
-            if (sizeList) {
-              const sizeValue = sizeList[m];
-              if (sizeValue) {
-                return sizeValue;
-              }
-            }
-          } catch (error) {
-            console.log("calculateArrayValue.error", error);
+          const sizeList: any = base[i];
+          if (Array.isArray(sizeList)) {
+            const sizeValue = sizeList.length >= m && sizeList[m];
+            if (sizeValue) return sizeValue;
           }
         } else if (theme?.params?.sizes) {
-          const sizeList = theme?.params.sizes[m];
-          const sizeValue = sizeList[m];
-          if (sizeValue) {
-            return sizeValue;
+          const sizeList =
+            theme?.params.sizes.length >= m && theme?.params.sizes[m];
+
+          if (sizeList) {
+            const sizeValue = sizeList[m];
+            if (sizeValue) return sizeValue;
+          }
+        } else if (Themes.params?.sizes) {
+          const sizeList =
+            Themes.params?.sizes.length >= m && Themes.params?.sizes[m];
+          if (sizeList) {
+            const sizeValue = sizeList[m];
+            if (sizeValue) return sizeValue;
           }
         }
 
@@ -39,9 +43,14 @@ export default (theme?: TTheme, value?: number | string | [], base?: []) => {
 
   let vl = value;
   if (typeof value == "number") {
-    if (theme?.params?.baseSizes) {
-      const sizeValue = theme?.params?.baseSizes[value];
-      if (sizeValue) vl = sizeValue;
+    if (theme?.baseSizes) {
+      const sizeValue =
+        theme?.baseSizes[value] || Themes.params?.baseSizes[value];
+      if (sizeValue) {
+        vl = sizeValue;
+      } else {
+        vl = `${value}px`;
+      }
     }
   }
 

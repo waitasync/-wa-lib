@@ -10,6 +10,5 @@ export default (
 ) => {
   if (!value) return "";
   const values = calculateArrayValue(theme, value);
-  console.log(keyName);
   return returnResponsive(theme, keyName, { values }, callback);
 };

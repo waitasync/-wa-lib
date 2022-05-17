@@ -1,3 +1,4 @@
+import Themes from "../../../theme";
 import { TTheme } from "../../../doman";
 import { css } from "styled-components";
 import styling from "./manipulatorStyling";
@@ -8,8 +9,9 @@ const returnResponsive = (
   data: string[] | number[] | [] | any,
   callback: Function | any = undefined
 ) => {
-  const mediaQueries = theme?.mediaQueries;
-  const platforms = theme?.platforms;
+  const mediaQueries =
+    theme?.param?.mediaQueries || Themes?.params?.mediaQueries;
+  const platforms = theme?.param?.platforms || Themes?.params?.platforms;
 
   const list = [
     mediaQueries[platforms?.mobile],

@@ -1,13 +1,10 @@
 import { TTheme } from "./TTheme";
-import { TPropertiesCSS } from "./TPropertiesCSS";
 
-export type TReceivedProperties = {
-  theme: TTheme;
+export type TPropertiesCSS = {
   width?: string | number | [] | any;
   height?: string | number | [] | any;
   color?: string | number | [];
   alignItems?: string | number | [];
-  bg?: string | [];
   background?: string | number | [];
   backgroundColor?: string | number | [];
   borderBottomStyle?: string | number | [];
@@ -44,5 +41,4 @@ export type TReceivedProperties = {
   ml?: string | number | [];
   active?: TPropertiesCSS | string | number | [] | any;
   hover?: TPropertiesCSS | string | number | [] | any;
-  [x: string]: any;
 };
