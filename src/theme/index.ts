@@ -8,11 +8,9 @@ export * from "./colors";
 export * from "./models";
 
 const dataExport: TTheme = {
-  private: true,
   params,
   colors,
   models,
-  variants: {},
 };
 
 export default dataExport;

@@ -1,4 +1,6 @@
-export const colors = {
+import { IColors } from "../doman";
+
+export const colors: IColors = {
   light: "#fff",
   dark: "#27251F",
   primary: "blue",

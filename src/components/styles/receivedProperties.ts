@@ -1,9 +1,9 @@
 import { css } from "styled-components";
-import { TListKeyName, TReceivedProperties, TTheme } from "../../../doman";
+import { TListKeyName, TReceivedProperties, TTheme } from "../../doman";
 import manipulatorTag from "./manipulatorTag";
 import onPaddingStyle from "./onPaddingStyle";
 import onMarginStyle from "./onMarginStyle";
-import themeLocal from "../../../theme";
+import themeLocal from "../../theme";
 
 const listKeyName: TListKeyName[] = [
   { tag: "height", keyName: "height", callback: undefined },
@@ -13,6 +13,7 @@ const listKeyName: TListKeyName[] = [
   { tag: "background", keyName: "background", callback: undefined },
   { tag: "backgroundColor", keyName: "background-color", callback: undefined },
   { tag: "backgroundImage", keyName: "background-image", callback: undefined },
+  { tag: "textShadow", keyName: "text-shadow", callback: undefined },
   {
     tag: "backgroundRepeat",
     keyName: "background-repeat",
@@ -41,6 +42,10 @@ const listKeyName: TListKeyName[] = [
     callback: undefined,
   },
   { tag: "bg", keyName: "background-color", callback: undefined },
+  { tag: "border", keyName: "border", callback: undefined },
+  { tag: "borderRadius", keyName: "border-radius", callback: undefined },
+  { tag: "outline", keyName: "outline", callback: undefined },
+  { tag: "textDecoration", keyName: "text-decoration", callback: undefined },
   { tag: "lineHeight", keyName: "line-height", callback: undefined },
   { tag: "cursor", keyName: "cursor", callback: undefined },
   { tag: "display", keyName: "display", callback: undefined },
@@ -52,13 +57,21 @@ const listKeyName: TListKeyName[] = [
   { tag: "justifyContent", keyName: "justify-content", callback: undefined },
   { tag: "transition", keyName: "transition", callback: undefined },
   { tag: "textAlign", keyName: "text-align", callback: undefined },
+  { tag: "whiteSpace", keyName: "white-space", callback: undefined },
+  { tag: "rows", keyName: "rows", callback: undefined, type: "number" },
 ];
 
 const execListProperties = (p: TReceivedProperties) => {
   return listKeyName.map((m: TListKeyName) => {
     if (!m?.keyName.length) return "";
     const valueTag = p[m.tag];
-    return manipulatorTag(p?.theme || themeLocal, m.keyName, valueTag);
+    return manipulatorTag(
+      p?.theme || themeLocal,
+      m.keyName,
+      valueTag,
+      undefined,
+      m.type
+    );
   });
 };
 

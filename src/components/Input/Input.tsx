@@ -1,21 +1,24 @@
-import React from "react";
+import React, { useState, useEffect, memo } from "react";
 import * as St from "./styles";
 import {
   TTheme,
-  TPropertiesCSS,
-  ICompPrivateFlexProps,
+  ICompPrivateInputProps,
   EWhiteSpace,
+  TPropertiesCSS,
 } from "../../doman";
+import preprareTheme from "../styles/preprareTheme";
+import Flex from "../Flex";
 import themeLocal from "../../theme";
+import onCheckGetModel from "../styles/onCheckGetModel";
 
-export interface FlexProps {
+export interface InputProps {
   theme?: TTheme;
-  children?: string | React.FC | any;
   label?: string | React.FC | any;
-  color?: string | string[] | any;
+  value?: string | string[] | any;
+  onChange?: string | number | string[] | number[] | any;
   width?: string | number | string[] | number[] | any;
   height?: string | number | string[] | number[] | any;
-  alignItems?: string | string[] | any;
+  color?: string | string[] | any;
   background?: string | string[] | any;
   backgroundColor?: string | string[] | any;
   borderBottomStyle?: string | string[] | any;
@@ -52,22 +55,75 @@ export interface FlexProps {
   mr?: string | string[] | number | number[] | any;
   mb?: string | string[] | number | number[] | any;
   ml?: string | string[] | number | number[] | any;
+  outline?: string | string[] | any;
   borderRadius?: string | string[] | any;
   border?: string | string[] | any;
-  whiteSpace?: EWhiteSpace | EWhiteSpace[] | any;
+  error?: boolean | boolean[] | any; // defini error
+  message?: boolean | boolean[] | any; // defini error
+  labelCustom?: TPropertiesCSS | any;
 
-  onHover?: TPropertiesCSS | TPropertiesCSS[] | any;
-  onActive?: TPropertiesCSS | TPropertiesCSS[] | any;
+  placeholder?: string | string[] | any;
+  fnPlaceholder?: TPropertiesCSS | any;
 }
 
-const CompPrivate = (p: ICompPrivateFlexProps) => {
-  return <St.Container {...p}>{p?.children || p?.label}</St.Container>;
+const CompPrivate = (p: ICompPrivateInputProps) => {
+  const model = p?.model || "prv.default";
+  const props = onCheckGetModel(p);
+
+  const {
+    theme,
+    flexDirection,
+    width,
+    label,
+    error,
+    message,
+    labelCustom,
+    ...sendProsInput
+  } = props;
+
+  let propsError = {};
+  if (!error) {
+    propsError = {
+      error,
+      message,
+      color: p.theme?.colors?.danger | themeLocal.colors.danger,
+    };
+  }
+
+  return (
+    <Flex
+      {...{
+        p: [4],
+        borderRadius: [5],
+        width,
+        ...(flexDirection
+          ? {
+              flexDirection,
+            }
+          : {}),
+      }}
+    >
+      {label && (
+        <Flex
+          {...{
+            pb: [3],
+            pr: [3],
+            whiteSpace: EWhiteSpace.pre,
+            ...propsError,
+            ...labelCustom,
+          }}
+          children={label}
+        />
+      )}
+      <Flex>
+        <St.Container {...{ ...sendProsInput, model }} />
+      </Flex>
+    </Flex>
+  );
 };
 
-const Flex = (props: FlexProps) => {
-  const theme: TTheme = props?.theme || themeLocal;
-  const component = <CompPrivate {...props} theme={theme} />;
-  return component;
+const Input = (p: InputProps) => {
+  return <CompPrivate {...p} theme={preprareTheme(p.theme)} />;
 };
 
-export default Flex;
+export default Input;

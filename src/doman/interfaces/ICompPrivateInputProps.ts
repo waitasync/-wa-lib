@@ -1,21 +1,17 @@
-import React from "react";
-import * as St from "./styles";
-import {
-  TTheme,
-  TPropertiesCSS,
-  ICompPrivateFlexProps,
-  EWhiteSpace,
-} from "../../doman";
-import themeLocal from "../../theme";
+import { TPropertiesCSS } from "../TPropertiesCSS";
+import { TTheme } from "../TTheme";
 
-export interface FlexProps {
-  theme?: TTheme;
-  children?: string | React.FC | any;
+export interface ICompPrivateInputProps {
+  theme: TTheme;
+  model?: string;
   label?: string | React.FC | any;
-  color?: string | string[] | any;
+  value?: string | string[] | any;
+  onChange?: string | number | string[] | number[] | any;
+
+  rows?: number | any;
   width?: string | number | string[] | number[] | any;
   height?: string | number | string[] | number[] | any;
-  alignItems?: string | string[] | any;
+  color?: string | string[] | any;
   background?: string | string[] | any;
   backgroundColor?: string | string[] | any;
   borderBottomStyle?: string | string[] | any;
@@ -52,22 +48,14 @@ export interface FlexProps {
   mr?: string | string[] | number | number[] | any;
   mb?: string | string[] | number | number[] | any;
   ml?: string | string[] | number | number[] | any;
+  outline?: string | string[] | any;
   borderRadius?: string | string[] | any;
   border?: string | string[] | any;
-  whiteSpace?: EWhiteSpace | EWhiteSpace[] | any;
+  labelCustom?: TPropertiesCSS | any;
 
-  onHover?: TPropertiesCSS | TPropertiesCSS[] | any;
-  onActive?: TPropertiesCSS | TPropertiesCSS[] | any;
+  error?: boolean | boolean[] | any; // defini error
+  message?: boolean | boolean[] | any; // defini error
+
+  placeholder?: string | string[] | any;
+  fnPlaceholder?: TPropertiesCSS | any;
 }
-
-const CompPrivate = (p: ICompPrivateFlexProps) => {
-  return <St.Container {...p}>{p?.children || p?.label}</St.Container>;
-};
-
-const Flex = (props: FlexProps) => {
-  const theme: TTheme = props?.theme || themeLocal;
-  const component = <CompPrivate {...props} theme={theme} />;
-  return component;
-};
-
-export default Flex;

@@ -1,3 +1,5 @@
+import { IColors } from "./interfaces";
+
 export type TBaseSizes = string[] | number[];
 export type TBreakpoints = string[];
 export type TPlatforms = {
@@ -19,16 +21,15 @@ export type TMediaQueries = {
 };
 
 export type TParams = {
-  sizes: any | [TBaseSizes];
-  baseSizes: TBaseSizes;
-  mediaQueries: TMediaQueries;
-  breakpoints: TBreakpoints;
   platforms: TPlatforms;
-  [x: string]: any;
+  breakpoints: TBreakpoints;
+  mediaQueries: TMediaQueries;
+  baseSizes: TBaseSizes;
+  sizes: any | [TBaseSizes];
 };
 
 export type TTheme = {
-  params?: TParams;
-  models?: Function | any;
-  [x: string]: any;
+  params: TParams;
+  models: Function | Object | any;
+  colors: IColors;
 };

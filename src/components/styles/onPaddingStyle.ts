@@ -1,7 +1,7 @@
 import calculateArrayValue from "./calculateArrayValue";
 import manipulatorPaddingOrMarginStyling from "./manipulatorPaddingOrMarginStyling";
 import returnResponsive from "./returnResponsive";
-import { TPaddingStyle } from "../../../doman";
+import { TPaddingStyle } from "../../doman";
 
 /* 
 	CSS: padding

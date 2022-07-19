@@ -1,4 +1,4 @@
-import { TManipulatorStylingData } from "../../../doman";
+import { TManipulatorStylingData } from "../../doman";
 
 export default (i: number, name: string, data: TManipulatorStylingData) => {
   let styleResult: string | undefined = undefined;

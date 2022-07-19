@@ -3,7 +3,9 @@ import { TPropertiesCSS } from "./TPropertiesCSS";
 
 export type TReceivedProperties = {
   theme: TTheme;
+  model?: string | any;
   width?: string | number | [] | any;
+  rows?: number | any;
   height?: string | number | [] | any;
   color?: string | number | [];
   alignItems?: string | number | [];
@@ -42,7 +44,10 @@ export type TReceivedProperties = {
   mr?: string | number | [];
   mb?: string | number | [];
   ml?: string | number | [];
-  active?: TPropertiesCSS | string | number | [] | any;
-  hover?: TPropertiesCSS | string | number | [] | any;
-  [x: string]: any;
+  placeholder?: string | string[] | any;
+
+  fnActive?: TPropertiesCSS | any;
+  fnHover?: TPropertiesCSS | any;
+  fnPlaceholder?: TPropertiesCSS | any;
+  fnFocus?: TPropertiesCSS | any;
 };

@@ -1,15 +1,15 @@
 import { css } from "styled-components";
-import { TReceivedPropertiesEvents } from "../../../doman";
+import { TReceivedPropertiesEvents } from "../../doman";
 import receivedProperties from "./receivedProperties";
 
-// aplica subpropriedades hover
+// aplica subpropriedades onHover
 const events = (p: TReceivedPropertiesEvents) => {
-  if (!p?.hover) return "";
+  if (!p?.onHover) return "";
 
   return css`
     &:hover {
-      ${Object.keys(p.hover).map((item) => {
-        const value = p.hover[item];
+      ${Object.keys(p.onHover).map((item) => {
+        const value = p.onHover[item];
         const resProps = receivedProperties({
           theme: p.theme,
           [item]: value,

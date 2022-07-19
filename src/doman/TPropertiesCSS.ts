@@ -39,6 +39,10 @@ export type TPropertiesCSS = {
   mr?: string | number | [];
   mb?: string | number | [];
   ml?: string | number | [];
-  active?: TPropertiesCSS | string | number | [] | any;
-  hover?: TPropertiesCSS | string | number | [] | any;
+  placeholder?: TPropertiesCSS | any;
+
+  fnActive?: TPropertiesCSS | any;
+  fnHover?: TPropertiesCSS | any;
+  fnPlaceholder?: TPropertiesCSS | any;
+  fnFocus?: TPropertiesCSS | any;
 };

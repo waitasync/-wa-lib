@@ -1,16 +1,10 @@
-import React from "react";
-import * as St from "./styles";
-import {
-  TTheme,
-  TPropertiesCSS,
-  ICompPrivateFlexProps,
-  EWhiteSpace,
-} from "../../doman";
-import themeLocal from "../../theme";
+import { TPropertiesCSS } from "../TPropertiesCSS";
+import { TTheme } from "../TTheme";
 
-export interface FlexProps {
-  theme?: TTheme;
+export interface ICompPrivateFlexProps {
+  theme: TTheme;
   children?: string | React.FC | any;
+  model?: string;
   label?: string | React.FC | any;
   color?: string | string[] | any;
   width?: string | number | string[] | number[] | any;
@@ -54,20 +48,8 @@ export interface FlexProps {
   ml?: string | string[] | number | number[] | any;
   borderRadius?: string | string[] | any;
   border?: string | string[] | any;
-  whiteSpace?: EWhiteSpace | EWhiteSpace[] | any;
+  whiteSpace?: string | string[] | any;
 
-  onHover?: TPropertiesCSS | TPropertiesCSS[] | any;
   onActive?: TPropertiesCSS | TPropertiesCSS[] | any;
+  onHover?: TPropertiesCSS | TPropertiesCSS[] | any;
 }
-
-const CompPrivate = (p: ICompPrivateFlexProps) => {
-  return <St.Container {...p}>{p?.children || p?.label}</St.Container>;
-};
-
-const Flex = (props: FlexProps) => {
-  const theme: TTheme = props?.theme || themeLocal;
-  const component = <CompPrivate {...props} theme={theme} />;
-  return component;
-};
-
-export default Flex;

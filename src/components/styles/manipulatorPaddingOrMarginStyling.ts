@@ -1,4 +1,4 @@
-import { TManipulatorPaddingOrMarginStyling } from "../../../doman";
+import { TManipulatorPaddingOrMarginStyling } from "../../doman";
 import { css } from "styled-components";
 
 /* 

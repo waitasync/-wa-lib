@@ -8,4 +8,6 @@ export * from "./TManipulatorPaddingOrMarginStyling";
 export * from "./TPaddingStyle";
 export * from "./TMarginStyle";
 
-export * from "./enum/EPropertiesCSS";
+export * from "./enums";
+
+export * from "./interfaces";

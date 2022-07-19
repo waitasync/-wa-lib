@@ -1,7 +1,12 @@
-import Themes from "../../../theme";
-import { TTheme } from "../../../doman";
+import Themes from "../../theme";
+import { TTheme } from "../../doman";
 
-export default (theme?: TTheme, value?: number | string | [], base?: []) => {
+export default (
+  theme?: TTheme,
+  value?: number | string | [],
+  base?: [],
+  data?: { type?: string }
+) => {
   if (!value) return undefined;
 
   if (Array.isArray(value)) {
@@ -12,6 +17,11 @@ export default (theme?: TTheme, value?: number | string | [], base?: []) => {
 
     return result.map((m, i) => {
       if (typeof m == "number") {
+        // forçando um tipo para retorno
+        if (data?.type) {
+          if (data.type == "number") return m;
+        }
+
         if (base) {
           const sizeList: any = base[i];
           if (Array.isArray(sizeList)) {
@@ -20,15 +30,15 @@ export default (theme?: TTheme, value?: number | string | [], base?: []) => {
           }
         } else if (theme?.params?.sizes) {
           const sizeList =
-            theme?.params.sizes.length >= m && theme?.params.sizes[m];
+            theme?.params?.sizes.length >= m && theme?.params?.sizes[m];
 
           if (sizeList) {
             const sizeValue = sizeList[m];
             if (sizeValue) return sizeValue;
           }
-        } else if (Themes.params?.sizes) {
+        } else if (Themes.params.sizes) {
           const sizeList =
-            Themes.params?.sizes.length >= m && Themes.params?.sizes[m];
+            Themes.params.sizes.length >= m && Themes.params.sizes[m];
           if (sizeList) {
             const sizeValue = sizeList[m];
             if (sizeValue) return sizeValue;
@@ -43,9 +53,9 @@ export default (theme?: TTheme, value?: number | string | [], base?: []) => {
 
   let vl = value;
   if (typeof value == "number") {
-    if (theme?.baseSizes) {
+    if (theme?.params?.baseSizes) {
       const sizeValue =
-        theme?.baseSizes[value] || Themes.params?.baseSizes[value];
+        theme?.params?.baseSizes[value] || Themes.params.baseSizes[value];
       if (sizeValue) {
         vl = sizeValue;
       } else {

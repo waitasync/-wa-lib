@@ -1,6 +1,6 @@
 {
   "name": "@waitasync/wa-lib",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Custom React component library",
   "scripts": {
     "rollup": "rollup -c",

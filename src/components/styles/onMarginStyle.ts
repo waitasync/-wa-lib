@@ -1,4 +1,4 @@
-import { TMarginStyle } from "../../../doman";
+import { TMarginStyle } from "../../doman";
 import calculateArrayValue from "./calculateArrayValue";
 import manipulatorPaddingOrMarginStyling from "./manipulatorPaddingOrMarginStyling";
 import returnResponsive from "./returnResponsive";
